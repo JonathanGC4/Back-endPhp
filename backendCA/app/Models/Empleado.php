@@ -23,7 +23,7 @@ class Empleado extends Model
 
     public function area()
     {
-        return $this->belongsTo(Area::class, 'id_area');
+        return $this->belongsTo(Area::class,'id_area', 'id_area');
     }
 }
 

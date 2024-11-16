@@ -5,8 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AreaController;
 use App\Http\Controllers\Api\EmpleadoController;
 use App\Http\Controllers\Api\UsuarioController;
-use App\Http\Controllers\SalarioController;
-use App\Http\Controllers\HorasTrabajoController;
+use App\Http\Controllers\Api\SalarioController;
+use App\Http\Controllers\Api\HorasTrabajoController;
 
 
 Route::apiResource('areas', AreaController::class);
