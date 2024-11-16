@@ -2,14 +2,15 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\Api\AreaController;
+use App\Http\Controllers\Api\EmpleadoController;
+use App\Http\Controllers\Api\UsuarioController;
+use App\Http\Controllers\SalarioController;
+use App\Http\Controllers\HorasTrabajoController;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
 
-Route::get('/usuario/select', [UsuariosController::class, 'selectUsuario']);
-Route::post('/usuario/store', [UsuariosController::class, 'storeUsuario']);
-Route::put('/usuario/update/{id}', [UsuariosController::class, 'updateUsuario']);
-Route::get('/usuario/find/{id}', [UsuariosController::class, 'findUsuario']);
-Route::delete('/usuario/delete/{id}', [UsariosController::class, 'deleteUsuario']);
+Route::apiResource('areas', AreaController::class);
+Route::apiResource('empleados', EmpleadoController::class);
+Route::apiResource('usuarios', UsuarioController::class);
+Route::apiResource('salarios', SalarioController::class);
+Route::apiResource('horas-trabajo', HorasTrabajoController::class);
