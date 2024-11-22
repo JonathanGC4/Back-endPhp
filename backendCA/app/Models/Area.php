@@ -9,7 +9,11 @@ class Area extends Model
 {
     use HasFactory;
 
-    protected $table = 'area';
+    protected $table = 'area'; 
+    public $timestamps = false; 
 
-    protected $fillable = ['nombre_area'];
+    protected $fillable = ['nombre_area']; 
+    protected $primaryKey = 'id_area';
+
+    public $incrementing = true; 
 }

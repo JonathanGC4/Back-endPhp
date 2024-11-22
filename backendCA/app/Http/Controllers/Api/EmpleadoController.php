@@ -19,30 +19,42 @@ class EmpleadoController extends Controller
             'nombre' => 'required|string|max:50',
             'apellido' => 'required|string|max:50',
             'cargo' => 'required|string',
-            'id_area' => 'required|exists:area,id_area',
+            'id_area' => 'required|exists:area,id_area', 
             'puesto' => 'required|string|max:50',
-            'correo' => 'required|email|unique:empleados,correo',
+            'correo' => 'required|email|unique:empleados,correo', 
             'telefono' => 'required|string|max:20'
         ]);
 
         return Empleado::create($request->all());
     }
 
-    public function show($id)
+    public function show($id_empleado)
     {
-        return Empleado::with('area')->findOrFail($id);
+        return Empleado::with('area')->findOrFail($id_empleado);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_empleado)
     {
-        $empleado = Empleado::findOrFail($id);
+        $request->validate([
+            'nombre' => 'required|string|max:50',
+            'apellido' => 'required|string|max:50',
+            'cargo' => 'required|string',
+            'id_area' => 'required|exists:area,id_area', 
+            'puesto' => 'required|string|max:50',
+            'correo' => 'required|email|unique:empleados,correo,' . $id_empleado . ',id_empleado', 
+            'telefono' => 'required|string|max:20'
+        ]);
+
+        $empleado = Empleado::findOrFail($id_empleado);
         $empleado->update($request->all());
-        return $empleado;
+        
+        return $empleado; 
     }
 
-    public function destroy($id)
+    public function destroy($id_empleado)
     {
-        Empleado::destroy($id);
-        return response()->noContent();
+        Empleado::destroy($id_empleado);
+        
+        return response()->noContent(); 
     }
 }

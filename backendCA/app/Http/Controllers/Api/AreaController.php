@@ -25,15 +25,19 @@ class AreaController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-        $area = Area::findOrFail($id);
-        $area->update($request->all());
-        return $area;
-    }
-
-    public function destroy($id)
-    {
-        Area::destroy($id);
-        return response()->noContent();
-    }
+{
+    $area = Area::findOrFail($id); 
+    $area->update($request->all());
+    return response()->json($area); 
 }
+
+    public function destroy($id_area)
+    {
+        $deleted = Area::where('id_area', $id_area)->delete(); 
+    
+        if ($deleted === 0) {
+            return response()->json(['error' => 'Área no encontrada'], 404); 
+        }
+    
+        return response()->noContent(); 
+    }}

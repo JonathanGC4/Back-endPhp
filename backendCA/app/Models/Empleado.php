@@ -10,7 +10,8 @@ class Empleado extends Model
     use HasFactory;
 
     protected $table = 'empleados';
-
+    public $timestamps = false; 
+    protected $primaryKey = 'id_empleado'; 
     protected $fillable = [
         'nombre', 
         'apellido', 
@@ -20,6 +21,7 @@ class Empleado extends Model
         'correo', 
         'telefono'
     ];
+
 
     public function area()
     {
